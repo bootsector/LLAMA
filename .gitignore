@@ -1,0 +1,12 @@
+.DS_Store
+**/.vscode/ipch/*
+*.eep
+*.elf
+*.hex
+*.lss
+*.map
+*.sym
+*.d
+*.o
+*.bin
+
