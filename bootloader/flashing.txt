@@ -1,0 +1,5 @@
+avrdude -C avrdude.conf -p m32u4 -c USBasp  -e
+
+avrdude -C avrdude.conf -p m32u4 -c USBasp -U lfuse:w:0x7f:m -U hfuse:w:0x98:m -U efuse:w:0xcb:m
+
+avrdude -C avrdude.conf -p m32u4 -c USBasp -B 4 -U flash:w:"BOOTLOADER.hex"
