@@ -95,7 +95,7 @@ void LLIO_ProcessEvent(void) {
 			_delay_us(40);
 			bit_clear(DDRD, 0);
 			break;
-		case 0x01:
+		case 0x10:
 			llio_out_send();
 			break;
 		default:
