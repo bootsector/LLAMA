@@ -60,7 +60,7 @@
 .endm
 
 .macro STORE_BIT dst
-	IN r30, _SFR_IO_ADDR(DDRD) ; 1 cycle
+	IN r30, _SFR_IO_ADDR(PIND) ; 1 cycle
 	BST r30, 1 ; 1 cycle
 	BLD r18, \dst ; 1 cycle
 .endm
