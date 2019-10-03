@@ -117,6 +117,9 @@ INT0_vect:
 
 	STORE_BIT 7
 
+	; Invert LLIO cmd bits (hi = 0, lo = 1)
+	com r18
+
 	; Store LLIO command
 	sts llio_cmd, r18
 
