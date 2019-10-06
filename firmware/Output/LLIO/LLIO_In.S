@@ -66,7 +66,7 @@
 .endm
 
 INT0_vect:
-	; ~4 cycles have been passed since interrupt...
+	; ~7 cycles have been passed since interrupt + vector jmp...
 
 	; Save SREG (part 1)
 	push    r0   ; 2 cycles
@@ -76,10 +76,6 @@ INT0_vect:
 	; Save work registers
 	push    r18  ; 2 cycles
 	push    r30  ; 2 cycles
-
-	nop
-	nop
-	nop
 
 	; ~1uS has been spent up to here. Spend more 4uS
 	SPEND_16_CYCLES
