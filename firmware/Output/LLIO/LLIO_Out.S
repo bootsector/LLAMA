@@ -18,6 +18,10 @@
 * along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
+/*
+* IMPORTANT: This ASM unit requires a 16Mhz clock in order to work properly!
+*/
+
 #include <avr/io.h>
 
 .global llio_out_init

@@ -18,6 +18,10 @@
 * along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
+/*
+* IMPORTANT: This ASM unit requires a 16Mhz clock in order to work properly!
+*/
+
 #include <avr/io.h>
 #include <avr/interrupt.h>
 
@@ -46,7 +50,7 @@
 .endm
 
 .macro DELAY_4_5US_AFTER_POLLING
-	; 3 cycles spend by STORE_BIT macro until here so pad with nops to get 1us
+	; 3 cycles spend by STORE_BIT macro until here so pad with nops to get 0.5us
 	nop
 	nop
 	nop
