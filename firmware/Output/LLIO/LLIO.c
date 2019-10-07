@@ -24,8 +24,9 @@
 
 #include <string.h>
 
+#include "LLIO.h"
+
 #include "LLIO_Out.h"
-#include "AbstractPad.h"
 #include "Util.h"
 
 #define LLIO_BUFFER_SIZE 13

@@ -21,6 +21,8 @@
 #ifndef _LLIO_H_
 #define _LLIO_H_
 
+#include "AbstractPad.h"
+
 void LLIO_Init(void);
 void LLIO_SetPadData(AbstractPad_t *padData);
 void LLIO_ProcessEvent(void);
