@@ -25,7 +25,8 @@ TARGET       = LLOAD
 SRC          = main.c \
 Output/USB/Descriptors.c Output/USB/XInputPad.c Output/LLIO/LLIO_In.S \
 Output/LLIO/LLIO_Out.S Output/LLIO/LLIO.c System/AbstractPad.c \
-Output/Output.c Input/Input.c Input/Pads/NeoGeo_In.c \
+Output/Output.c Input/Input.c Input/Pads/NeoGeo_In.c Input/Pads/SNES_In.c \
+Input/Pads/Genesis_In.c Input/Pads/TG16_In.c Input/Pads/Saturn_In.c \
 $(LUFA_SRC_USB)
 LUFA_PATH    = ../shared/LUFA
 CC_FLAGS     = -DUSE_LUFA_CONFIG_HEADER -IConfig/ -ISystem/ -IOutput/USB \

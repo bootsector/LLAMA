@@ -26,6 +26,10 @@
 #include "Util.h"
 
 #include "NeoGeo_In.h"
+#include "SNES_In.h"
+#include "Genesis_In.h"
+#include "TG16_In.h"
+#include "Saturn_In.h"
 
 static volatile uint8_t current_pad = DB15_PAD_NEOGEO;
 static volatile uint8_t needs_detection = 0;
@@ -96,19 +100,19 @@ static void Input_InitializePad(uint8_t force_init) {
 		case DB15_PAD_NEOGEO:
 			pad_initialized = NeoGeo_In_Init();
 			break;
-		// case DB15_PAD_SNES:
-		// case DB15_PAD_NES:
-		// 	pad_initialized = SNES_In_Init();
-		// 	break;
-		// case DB15_PAD_GENESIS:
-		// 	pad_initialized = Genesis_In_Init();
-		// 	break;
-		// case DB15_PAD_TG16:
-		// 	pad_initialized = TG16_In_Init();
-		// 	break;
-		// case DB15_PAD_SATURN:
-		// 	pad_initialized = Saturn_In_Init();
-		// 	break;
+		case DB15_PAD_SNES:
+		case DB15_PAD_NES:
+			pad_initialized = SNES_In_Init();
+			break;
+		case DB15_PAD_GENESIS:
+			pad_initialized = Genesis_In_Init();
+			break;
+		case DB15_PAD_TG16:
+			pad_initialized = TG16_In_Init();
+			break;
+		case DB15_PAD_SATURN:
+			pad_initialized = Saturn_In_Init();
+			break;
 		default:
 			pad_initialized = NeoGeo_In_Init();
 			break;
@@ -125,21 +129,21 @@ static void Input_ReadPad(AbstractPad_t *padData) {
 		case DB15_PAD_NEOGEO:
 			NeoGeo_In_GetPadState(padData);
 			break;
-		// case DB15_PAD_SNES:
-		// 	SNES_In_GetPadState(padData);
-		// 	break;
-		// case DB15_PAD_NES:
-		// 	NES_In_GetPadState(padData);
-		// 	break;
-		// case DB15_PAD_GENESIS:
-		// 	Genesis_In_GetPadState(padData);
-		// 	break;
-		// case DB15_PAD_TG16:
-		// 	TG16_In_GetPadState(padData);
-		// 	break;
-		// case DB15_PAD_SATURN:
-		// 	Saturn_In_GetPadState(padData);
-		// 	break;
+		case DB15_PAD_SNES:
+			SNES_In_GetPadState(padData);
+			break;
+		case DB15_PAD_NES:
+			NES_In_GetPadState(padData);
+			break;
+		case DB15_PAD_GENESIS:
+			Genesis_In_GetPadState(padData);
+			break;
+		case DB15_PAD_TG16:
+			TG16_In_GetPadState(padData);
+			break;
+		case DB15_PAD_SATURN:
+			Saturn_In_GetPadState(padData);
+			break;
 		default:
 			NeoGeo_In_GetPadState(padData);
 			break;

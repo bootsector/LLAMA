@@ -1,5 +1,6 @@
 {
 	"files.associations": {
-		"input.h": "c"
+		"input.h": "c",
+		"snes_in.h": "c"
 	}
 }
