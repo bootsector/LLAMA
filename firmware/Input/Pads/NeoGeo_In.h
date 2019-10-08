@@ -18,36 +18,12 @@
 * along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include <avr/io.h>
+#ifndef _NEOGEO_IN_H_
+#define _NEOGEO_IN_H_
 
-#include "Input.h"
-#include "Output.h"
-#include "Util.h"
+#include "AbstractPad.h"
 
-AbstractPad_t PadData_DB15;
+uint8_t NeoGeo_In_Init(void);
+void NeoGeo_In_GetPadState(AbstractPad_t *padData);
 
-int main(void) {
-
-	// Set clock @ 16Mhz
-	CPU_PRESCALE(0);
-
-	// Disable JTAG
-	bit_set(MCUCR, 1 << JTD);
-	bit_set(MCUCR, 1 << JTD);
-
-	// Reset Abstract Pad data buffer
-	AbstractPad_ResetBuffer(&PadData_DB15);
-
-	// Initialize LLIO and USB interfaces
-	Output_Init();
-
-	// Initialize DB15 interface
-	Input_Init();
-
-	// Main loop
-	for (;;) {
-		Input_GetPadState(&PadData_DB15);
-		
-		Output_SetPadState(&PadData_DB15);
-	}
-}
+#endif
