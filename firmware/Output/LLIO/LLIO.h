@@ -3,12 +3,6 @@
 *
 * Copyright (c) 2019
 * Bruno Freitas - bruno@brunofreitas.com - http://www.brunofreitas.com/
-* 
-* This module was created based in the following work:
-* 
-* HDL implementation of Low-Latency API protocol
-* https://github.com/Kitrinx/LLAPI/blob/master/LLIO.sv
-* Copyright 2019 Jamie Dickson aka Kitrinx
 *
 * This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -22,6 +16,13 @@
 *
 * You should have received a copy of the GNU General Public License
 * along with this program. If not, see <http://www.gnu.org/licenses/>.
+*
+*
+* This module was created based in the following work (MIT License):
+* 
+* HDL implementation of Low-Latency API protocol
+* https://github.com/Kitrinx/LLAPI/blob/master/LLIO.sv
+* Copyright 2019 Jamie Dickson aka Kitrinx
 */
 
 #ifndef _LLIO_H_
