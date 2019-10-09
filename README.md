@@ -1,4 +1,4 @@
-** LLOAD - Low Latency Open Adapter for MiSTer FPGA **
+**LLOAD - Low Latency Open Adapter for MiSTer FPGA**
 
 This is an open-source / open-hardware controllers adapter for MiSTer FPGA.
 
@@ -10,12 +10,12 @@ everything.
 32U4 module designs include gerber files and SeeedStudio BOM file for Fusion
 PCB Assembly service.
 
-* Licensing:
+**Licensing:**
 
 - Firmware and bootloader sources are licensed under [GPL-3.0](LICENSE)
-- PCBs are licensed under [CC BY-NC-SA](pcb/LICENSE.txt)
+- PCBs are licensed under [CC BY-NC-SA 4.0](pcb/LICENSE.txt)
 
-To-do list:
+**To-do list:**
 
 - Convert the LLOAD main PCB and the 32U4 module PCBs into an all-in-one MiSTer
 friendly PCB. Embed USB hub circuitry to the all-in-one PCB (??)
