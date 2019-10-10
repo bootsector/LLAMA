@@ -2,7 +2,7 @@
 
 This is an open-source / open-hardware controllers adapter for MiSTer FPGA.
 
-Supported outputs are both USB (XInput) and LLAPI.
+Supported outputs are both USB (XInput) and [LLAPI](https://github.com/Kitrinx/LLAPI/blob/master/LLIO.sv).
 
 32U4 module designs include gerber files and SeeedStudio BOM file for Fusion
 PCB Assembly service.
