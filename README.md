@@ -18,7 +18,7 @@ The firmware source code made available here is an original creation by Bruno
 Freitas. 
 
 The AVR ASM/C implementation of the LLAPI "slave" interface presented here
-is originally created by Bruno Freitas. MiSTer's LLAPI "master" interface
+was created from scratch by Bruno Freitas. MiSTer's LLAPI "master" interface
 protocol described [here](https://github.com/Kitrinx/LLAPI/blob/master/LLIO.sv) 
 in SystemVerilog has been used as documentation and reference only.
 
@@ -26,13 +26,3 @@ No source code from third parties has been used used by this project.
 
 No reverse-engineering has been done against commercial and non-commercial
 products during the development of this project.
-
-**To-do list:**
-
-- Convert the LLOAD main PCB and the 32U4 module PCBs into an all-in-one MiSTer
-friendly PCB. Embed USB hub circuitry to the all-in-one PCB (??)
-
-- Prototype boards will always be DIY friendly - Create a version that accepts
-an Arduino Micro (32U4 based) module
-
-- Design HDMI to DB15 PCB adapters for BB cables
