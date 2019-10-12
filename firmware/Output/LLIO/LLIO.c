@@ -101,9 +101,9 @@ void LLIO_ProcessEvent(void) {
 
 	switch (llio_cmd) {
 		case 0x00:
-			bit_set(DDRD, 0);
+			bit_set(DDRD, 1 << 0);
 			_delay_us(40);
-			bit_clear(DDRD, 0);
+			bit_clear(DDRD, 1 << 0);
 			break;
 		case 0x01:
 			llio_out_send();
