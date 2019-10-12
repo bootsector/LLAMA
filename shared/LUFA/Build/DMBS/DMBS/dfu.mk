@@ -48,7 +48,7 @@ flip-ee: $(TARGET).eep $(MAKEFILE_LIST)
 # Programs in the target FLASH memory using DFU-PROGRAMMER
 dfu: $(TARGET).hex $(MAKEFILE_LIST)
 	@echo $(MSG_DFU_CMD) Programming FLASH with dfu-programmer using \"$<\"
-	dfu-programmer $(MCU) erase
+	dfu-programmer $(MCU) erase --force
 	dfu-programmer $(MCU) flash $<
 	dfu-programmer $(MCU) reset
 

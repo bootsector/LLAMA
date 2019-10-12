@@ -45,8 +45,8 @@ void LLIO_Init(void) {
 	llio_buffer_size = LLIO_BUFFER_SIZE;
 
 	// LL_ENABLE detection pin setup (Input - No internal pullup)
-	bit_clear(DDRC, 6);
-	bit_clear(PORTC, 6);
+	bit_clear(DDRC, 1 << 6);
+	bit_clear(PORTC, 1 << 6);
 	
 	llio_out_init();
 
