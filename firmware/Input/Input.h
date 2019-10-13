@@ -23,8 +23,8 @@
 
 #include "AbstractPad.h"
 
-#define DB15_PAD_GENESIS    0b0000
-#define DB15_PAD_RESERVED1  0b0001
+#define DB15_PAD_RESERVED1  0b0000
+#define DB15_PAD_GENESIS    0b0001
 #define DB15_PAD_NES        0b0010
 #define DB15_PAD_SNES       0b0011
 #define DB15_PAD_RESERVED2  0b0100

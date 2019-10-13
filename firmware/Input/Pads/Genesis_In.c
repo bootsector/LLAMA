@@ -107,7 +107,7 @@ static uint16_t genesis_read(void) {
 		_delay_us(DELAY);
 
 		// 8bitdo sega genesis receiver support - home button might be pressed here
-		extrabuttons |= ((!bit_check(PINF, 6) << 0) << 4);
+		extrabuttons |= ((!bit_check(PINF, 6)) << 4);
 
 		bit_set(PORTE, 1 << 6);
 		_delay_us(DELAY);
