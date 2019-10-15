@@ -89,6 +89,8 @@ void LLIO_SetPadData(AbstractPad_t *padData) {
 	padData->lb ? bit_set(llio_buffer[1], 1 << 6) : bit_clear(llio_buffer[1], 1 << 6); // L
 	padData->rb ? bit_set(llio_buffer[1], 1 << 7) : bit_clear(llio_buffer[1], 1 << 7); // R
 
+	padData->menu ? bit_set(llio_buffer[3], 1 << 7) : bit_clear(llio_buffer[3], 1 << 7); // Home button
+
 	llio_buffer[12] = hat_lut[padData->d_up << 3 | padData->d_down << 2 |
 			padData->d_left << 1 | padData->d_right];
 }
