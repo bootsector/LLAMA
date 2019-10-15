@@ -53,14 +53,13 @@ static void Output_SetUSBData(AbstractPad_t *padData) {
 }
 
 void Output_SetPadState(AbstractPad_t *padData) {
-
-	LLIO_ProcessEvent(padData);
-	
 	xbox_reset_watchdog();
 
 	if (LLIO_LLEnabled()) {
+		LLIO_ProcessEvent(padData);
 		xbox_reset_pad_status();
 	} else {
+		LLIO_ClearPadData();
 		Output_SetUSBData(padData);
 	}
 
