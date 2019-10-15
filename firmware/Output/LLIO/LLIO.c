@@ -62,11 +62,11 @@ void LLIO_ClearPadData(void) {
 
 	// Analog axis default values
 	llio_buffer[4] = 0x7F;
-	llio_buffer[4] = 0x7F;
-	llio_buffer[4] = 0x7F;
-	llio_buffer[4] = 0x7F;
-	llio_buffer[4] = 0x7F;
-	llio_buffer[4] = 0x7F;
+	llio_buffer[5] = 0x7F;
+	llio_buffer[6] = 0x7F;
+	llio_buffer[7] = 0x7F;
+	llio_buffer[8] = 0x7F;
+	llio_buffer[9] = 0x7F;
 
 	// Hat default value
 	llio_buffer[12] = 0x08;
