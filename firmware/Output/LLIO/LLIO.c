@@ -81,7 +81,7 @@ void LLIO_SetPadData(AbstractPad_t *padData) {
 	}
 }
 
-void LLIO_ProcessEvent(void) {
+void LLIO_ProcessEvent(AbstractPad_t *padData) {
 	
 	// Do nothing if LL is not enabled
 	if (!LLIO_LLEnabled()) {
@@ -102,7 +102,7 @@ void LLIO_ProcessEvent(void) {
 	switch (llio_cmd) {
 		case 0x00:
 			DDRD |= (0x03);
-			_delay_us(40);
+			LLIO_SetPadData(padData);
 			DDRD &= ~(0x03);
 			break;
 		case 0x01:

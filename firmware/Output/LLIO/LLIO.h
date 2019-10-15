@@ -25,7 +25,7 @@
 
 void LLIO_Init(void);
 void LLIO_SetPadData(AbstractPad_t *padData);
-void LLIO_ProcessEvent(void);
+void LLIO_ProcessEvent(AbstractPad_t *padData);
 uint8_t LLIO_LLEnabled(void);
 
 #endif

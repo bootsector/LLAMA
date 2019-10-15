@@ -54,8 +54,7 @@ static void Output_SetUSBData(AbstractPad_t *padData) {
 
 void Output_SetPadState(AbstractPad_t *padData) {
 
-	LLIO_SetPadData(padData);
-	LLIO_ProcessEvent();
+	LLIO_ProcessEvent(padData);
 	
 	xbox_reset_watchdog();
 
