@@ -26,6 +26,10 @@
 
 AbstractPad_t PadData_DB15;
 
+void LLOAD_PadReadCallback(void) {
+	Input_GetPadState(&PadData_DB15);
+}
+
 int main(void) {
 
 	// Set clock @ 16Mhz
@@ -39,15 +43,17 @@ int main(void) {
 	AbstractPad_ResetBuffer(&PadData_DB15);
 
 	// Initialize LLIO and USB interfaces
-	Output_Init();
+	Output_Init(LLOAD_PadReadCallback);
 
 	// Initialize DB15 interface
 	Input_Init();
 
 	// Main loop
 	for (;;) {
-		Input_GetPadState(&PadData_DB15);
-		
+		if (!Output_LLEnabled()) {
+			Input_GetPadState(&PadData_DB15);
+		}
+
 		Output_SetPadState(&PadData_DB15);
 	}
 }

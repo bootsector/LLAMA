@@ -23,9 +23,10 @@
 #include "XInputPad.h"
 #include "Util.h"
 
-void Output_Init(void) {
+void Output_Init(void (*callback)(void)) {
 	xbox_init(true);
 	LLIO_Init();
+	LLIO_SetCallback(callback);
 }
 
 static void Output_SetUSBData(AbstractPad_t *padData) {
@@ -64,4 +65,8 @@ void Output_SetPadState(AbstractPad_t *padData) {
 	}
 
 	xbox_send_pad_state();
+}
+
+uint8_t Output_LLEnabled(void) {
+	return LLIO_LLEnabled();
 }

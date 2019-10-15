@@ -31,6 +31,8 @@
 
 #define LLIO_BUFFER_SIZE 13
 
+static void (*cbPtr)(void) = NULL;
+
 uint8_t llio_buffer[LLIO_BUFFER_SIZE];
 volatile uint8_t llio_buffer_size;
 
@@ -55,6 +57,10 @@ void LLIO_Init(void) {
 	EIMSK |= (1 << INT0);  // activates the interrupt
 
 	sei();
+}
+
+void LLIO_SetCallback(void (*cb)(void)) {
+	cbPtr = cb;
 }
 
 void LLIO_ClearPadData(void) {
@@ -115,7 +121,13 @@ void LLIO_ProcessEvent(AbstractPad_t *padData) {
 	switch (llio_cmd) {
 		case 0x00:
 			DDRD |= (0x03);
+			
+			if (cbPtr) {
+				cbPtr();
+			}
+			
 			LLIO_SetPadData(padData);
+			
 			DDRD &= ~(0x03);
 			break;
 		case 0x01:
