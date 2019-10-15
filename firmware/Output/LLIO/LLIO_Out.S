@@ -32,11 +32,14 @@
 
 ; Delay 1us (16 cycles). Takes into account RET and CALL cycles
 delay_1us:
-	lpm
-	lpm
-	rjmp delay_1us_end
-
-delay_1us_end:
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
 	ret
 
 llio_out_init:
@@ -91,6 +94,16 @@ send_byte_loop:
 	; 2.3uS HIGH padding
 	call delay_1us
 	call delay_1us
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
 
 	sbrc r18, 0 ; 1 cycle if not skipped. 2 cycles if skipped
 	rjmp send_byte_line_low ; 2 cycles
@@ -103,13 +116,6 @@ send_byte_line_low:
 send_byte_continue:
 	; 2.2uS data bit second part padding
 	call delay_1us
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
 	nop
 	nop
 	nop
