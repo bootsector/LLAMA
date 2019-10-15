@@ -37,6 +37,8 @@ volatile uint8_t llio_buffer_size;
 extern volatile uint8_t llio_cmd;
 extern volatile uint8_t llio_cmd_received;
 
+static const uint8_t hat_lut[16] = {8, 2, 6, 8, 4, 3, 5, 8, 0, 1, 7, 8, 8, 8, 8, 8};
+
 void LLIO_Init(void) {
 	LLIO_ClearPadData();
 
@@ -57,6 +59,18 @@ void LLIO_Init(void) {
 
 void LLIO_ClearPadData(void) {
 	memset(llio_buffer, 0, sizeof(llio_buffer));
+
+	// Analog axis default values
+	llio_buffer[4] = 0x7F;
+	llio_buffer[4] = 0x7F;
+	llio_buffer[4] = 0x7F;
+	llio_buffer[4] = 0x7F;
+	llio_buffer[4] = 0x7F;
+	llio_buffer[4] = 0x7F;
+
+	// Hat default value
+	llio_buffer[12] = 0x08;
+
 	llio_cmd_received = 0;
 }
 
@@ -75,10 +89,8 @@ void LLIO_SetPadData(AbstractPad_t *padData) {
 	padData->lb ? bit_set(llio_buffer[1], 1 << 6) : bit_clear(llio_buffer[1], 1 << 6); // L
 	padData->rb ? bit_set(llio_buffer[1], 1 << 7) : bit_clear(llio_buffer[1], 1 << 7); // R
 
-	padData->d_up    ? bit_set(llio_buffer[2], 1 << 2) : bit_clear(llio_buffer[2], 1 << 2); // Up
-	padData->d_down  ? bit_set(llio_buffer[2], 1 << 3) : bit_clear(llio_buffer[2], 1 << 3); // Down
-	padData->d_left  ? bit_set(llio_buffer[2], 1 << 4) : bit_clear(llio_buffer[2], 1 << 4); // Left
-	padData->d_right ? bit_set(llio_buffer[2], 1 << 5) : bit_clear(llio_buffer[2], 1 << 5); // Down
+	llio_buffer[12] = hat_lut[padData->d_up << 3 | padData->d_down << 2 |
+			padData->d_left << 1 | padData->d_right];
 }
 
 void LLIO_ProcessEvent(AbstractPad_t *padData) {
