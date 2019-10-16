@@ -23,9 +23,12 @@
 #include "XInputPad.h"
 #include "Util.h"
 
-void Output_Init(void (*callback)(void)) {
+void Output_Init(void) {
 	xbox_init(true);
 	LLIO_Init();
+}
+
+void Output_SetLLIOCallback(void (*callback)(void)) {
 	LLIO_SetCallback(callback);
 }
 

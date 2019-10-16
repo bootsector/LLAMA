@@ -23,8 +23,9 @@
 
 #include "AbstractPad.h"
 
-void Output_Init(void (*callback)(void));
+void Output_Init(void);
 void Output_SetPadState(AbstractPad_t *padData);
 uint8_t Output_LLEnabled(void);
+void Output_SetLLIOCallback(void (*callback)(void));
 
 #endif

@@ -43,7 +43,10 @@ int main(void) {
 	AbstractPad_ResetBuffer(&PadData_DB15);
 
 	// Initialize LLIO and USB interfaces
-	Output_Init(LLOAD_PadReadCallback);
+	Output_Init();
+
+	// Set synchronous pad reading callback for LLIO
+	Output_SetLLIOCallback(LLOAD_PadReadCallback);
 
 	// Initialize DB15 interface
 	Input_Init();
