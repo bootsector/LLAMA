@@ -23,9 +23,13 @@
 #include "XInputPad.h"
 #include "Util.h"
 
+static uint8_t llio_status = 0;
+static uint8_t llio_status_previous = 0;
+
 void Output_Init(void) {
 	xbox_init(true);
 	LLIO_Init();
+	llio_status = llio_status_previous = 0;
 }
 
 void Output_SetLLIOCallback(void (*callback)(void)) {
@@ -57,13 +61,22 @@ static void Output_SetUSBData(AbstractPad_t *padData) {
 }
 
 void Output_SetPadState(AbstractPad_t *padData) {
+
+	llio_status = LLIO_LLEnabled();
+
+	if (llio_status != llio_status_previous) {
+		xbox_reset_pad_status();
+		
+		LLIO_ClearPadData();
+
+		llio_status_previous = llio_status;
+	}
+
 	xbox_reset_watchdog();
 
-	if (LLIO_LLEnabled()) {
+	if (llio_status) {
 		LLIO_ProcessEvent(padData);
-		xbox_reset_pad_status();
 	} else {
-		LLIO_ClearPadData();
 		Output_SetUSBData(padData);
 	}
 
