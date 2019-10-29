@@ -30,8 +30,9 @@
 .extern llio_buffer
 .extern llio_buffer_size
 
-; Delay 1us (16 cycles). Takes into account RET and CALL cycles
+; Delay 1us (16 cycles). Takes into account RET and RCALL cycles
 delay_1us:
+	nop
 	nop
 	nop
 	nop
@@ -92,10 +93,8 @@ send_byte_loop:
 	cbi _SFR_IO_ADDR(DDRD), 1
 	
 	; 2.3uS HIGH padding
-	call delay_1us
-	call delay_1us
-	nop
-	nop
+	rcall delay_1us
+	rcall delay_1us
 	nop
 	nop
 	nop
@@ -115,8 +114,7 @@ send_byte_line_low:
 
 send_byte_continue:
 	; 2.2uS data bit second part padding
-	call delay_1us
-	nop
+	rcall delay_1us
 	nop
 	nop
 	nop
@@ -162,21 +160,19 @@ llio_out_send:
 	; Timed sequence follows, so we need to disable interrupts
 	cli
 
-	call start_transfer
+	rcall start_transfer
 
 loop:
 	ld r18, X+
-	call send_byte
+	rcall send_byte
 	dec r19
 	brne loop
 
-	call delay_1us
-	call delay_1us
-	nop
-	nop
+	rcall delay_1us
+	rcall delay_1us
 	nop
 
-	call end_transfer
+	rcall end_transfer
 
 	; Re-enable global interrupts
 	sei
