@@ -46,7 +46,7 @@ const uint8_t PROGMEM DeviceDescriptor[] =
 	0x14, 0x01,  // bcdDevice 2.14
 	0x01,        // iManufacturer (String Index)
 	0x02,        // iProduct (String Index)
-	0x00,        // iSerialNumber (String Index)
+	0x03,        // iSerialNumber (String Index)
 	0x01        // bNumConfigurations 1
 };
 
@@ -222,6 +222,13 @@ const USB_Descriptor_String_t PROGMEM ProductString =
 	.UnicodeString          = L"LLOAD - Low Latency Open Adapter"
 };
 
+const USB_Descriptor_String_t PROGMEM VersionString =
+{
+	.Header                 = {.Size = USB_STRING_LEN(3), .Type = DTYPE_String},
+
+	.UnicodeString          = L"1.0"
+};
+
 /** This function is called by the library when in device mode, and must be overridden (see library "USB Descriptors"
  *  documentation) by the application code so that the address and size of a requested descriptor can be given
  *  to the USB library. When the device receives a Get Descriptor request on the control endpoint, this function
@@ -262,6 +269,10 @@ uint16_t CALLBACK_USB_GetDescriptor(const uint16_t wValue,
 				case 0x02:
 					Address = &ProductString;
 					Size    = pgm_read_byte(&ProductString.Header.Size);
+					break;
+				case 0x03:
+					Address = &VersionString;
+					Size    = pgm_read_byte(&VersionString.Header.Size);
 					break;
 		}
 
