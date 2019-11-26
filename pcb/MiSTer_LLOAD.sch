@@ -11616,16 +11616,6 @@ Source: http://www.diodes.com/datasheets/ds23001.pdf</description>
 <junction x="-12.7" y="-124.46"/>
 <label x="-7.62" y="-124.46" size="1.778" layer="95"/>
 </segment>
-<segment>
-<wire x1="35.56" y1="-73.66" x2="25.4" y2="-73.66" width="0.1524" layer="91"/>
-<label x="25.4" y="-73.66" size="1.778" layer="95"/>
-<pinref part="X1" gate="-1" pin="10"/>
-</segment>
-<segment>
-<wire x1="35.56" y1="-111.76" x2="25.4" y2="-111.76" width="0.1524" layer="91"/>
-<label x="25.4" y="-111.76" size="1.778" layer="95"/>
-<pinref part="X2" gate="-1" pin="10"/>
-</segment>
 </net>
 <net name="LL_ENABLE" class="0">
 <segment>
