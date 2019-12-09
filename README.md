@@ -7,6 +7,15 @@ Supported outputs are both USB (XInput) and MiSTer's [LLAPI](https://github.com/
 32U4 module designs include gerber files and SeeedStudio BOM file for Fusion
 PCB Assembly service.
 
+LLOAD currently supports original controllers for the systems below:
+
+- Neo Geo / Neo Geo CD (**NOT compatible with SuperGun DB15 based controllers** )
+- Super NES
+- NES
+- TurboGrafx-16 / PC Engine
+- Sega Saturn
+- Sega Genesis / Master System / Atari 2600 and compatibles
+
 **Licensing:**
 
 - Firmware and bootloader sources are licensed under [GPL-3.0](LICENSE)
