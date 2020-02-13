@@ -81,7 +81,8 @@ void LLIO_ClearPadData(void) {
 }
 
 void LLIO_SetPadData(AbstractPad_t *padData) {
-	llio_buffer[0] = padData->pad_id;
+	//TODO: SNES hardcoded. To change this based on the connected joypad!
+	llio_buffer[0] = 27;
 
 	padData->x ? bit_set(llio_buffer[1], 1 << 2) : bit_clear(llio_buffer[1], 1 << 2); // Y
 	padData->a ? bit_set(llio_buffer[1], 1 << 0) : bit_clear(llio_buffer[1], 1 << 0); // B

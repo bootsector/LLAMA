@@ -24,5 +24,4 @@
 
 void AbstractPad_ResetBuffer(AbstractPad_t *padData) {
 	memset(padData, 0, sizeof(AbstractPad_t));
-	padData->pad_id = 27; //TODO: This should be NeoGeo pad id, but I'm clueless which one it is!
 }

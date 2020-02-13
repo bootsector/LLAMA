@@ -146,6 +146,4 @@ void Saturn_In_GetPadState(AbstractPad_t *padData) {
 
 	padData->menu = padData->d_up && padData->start;
 	padData->back = padData->lt && padData->rt;
-
-	padData->pad_id = 3;
 }

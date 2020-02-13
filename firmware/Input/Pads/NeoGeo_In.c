@@ -86,6 +86,4 @@ void NeoGeo_In_GetPadState(AbstractPad_t *padData) {
 	padData->y = (!bit_check(PINF, 0)) || (!bit_check(PINE, 6));
 
 	padData->menu = padData->start && padData->back;
-
-	padData->pad_id = 27; //TODO: Change to NeoGeo pad id
 }

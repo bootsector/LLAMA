@@ -79,8 +79,6 @@ void SNES_In_GetPadState(AbstractPad_t *padData) {
 	padData->back = bit_check(button_data, SNES_SELECT);
 
 	padData->menu = padData->back && padData->start;
-
-	padData->pad_id = 27;
 }
 
 void NES_In_GetPadState(AbstractPad_t *padData) {
@@ -97,6 +95,4 @@ void NES_In_GetPadState(AbstractPad_t *padData) {
 	padData->back = bit_check(button_data, NES_SELECT);
 
 	padData->menu = padData->back && padData->start;
-
-	padData->pad_id = 18;
 }
