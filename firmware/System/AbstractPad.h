@@ -52,6 +52,9 @@ typedef struct
 	int16_t l_y;
 	int16_t r_x;
 	int16_t r_y;
+
+	// Pad ID
+	uint8_t pad_id;
 } AbstractPad_t;
 
 void AbstractPad_ResetBuffer(AbstractPad_t *padData);
