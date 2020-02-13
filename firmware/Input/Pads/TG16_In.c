@@ -24,8 +24,6 @@
 #include "TG16_In.h"
 #include "Util.h"
 
-static uint8_t pad_id;
-
 uint8_t TG16_In_Init(void) {
 	// Configure Data pins
 	bit_clear(DDRF, 1 << 6);
@@ -55,8 +53,6 @@ uint8_t TG16_In_Init(void) {
 static uint16_t tg16_read(void) {
 	uint16_t retval = 0;
 
-	pad_id = 6;
-
 	// Data Select HIGH
 	bit_set(PORTE, 1 << 6);
 
@@ -78,8 +74,6 @@ static uint16_t tg16_read(void) {
 			retval |= (!bit_check(PINF, 1) << 9);  // IV
 			retval |= (!bit_check(PINF, 4) << 10); // V
 			retval |= (!bit_check(PINF, 5) << 11); // VI
-
-			pad_id = 54;
 		} else {
 			// Normal pad reading
 			retval |= (!bit_check(PINF, 6) << 0); // UP
@@ -128,6 +122,4 @@ void TG16_In_GetPadState(AbstractPad_t *padData) {
 	padData->back = bit_check(button_data, TG16_SELECT);
 
 	padData->menu = padData->back && padData->start;
-
-	padData->pad_id = pad_id;
 }

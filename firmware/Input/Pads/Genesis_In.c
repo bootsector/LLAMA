@@ -26,8 +26,6 @@
 
 #define DELAY 14
 
-static uint8_t pad_id;
-
 uint8_t Genesis_In_Init(void) {
 	// DB9P1
 	bit_clear(DDRF, 1 << 6);
@@ -65,8 +63,6 @@ static uint16_t genesis_read(void) {
 
 	int extrabuttons = 0;
 	int normalbuttons = 0;
-
-	pad_id = 21;
 
 	// Get D-PAD, B, C buttons state
 	bit_set(PORTE, 1 << 6);
@@ -117,8 +113,6 @@ static uint16_t genesis_read(void) {
 		_delay_us(DELAY);
 		bit_clear(PORTE, 1 << 6);
 
-		pad_id = 22;
-
 		// Delay needed for settling joystick down
 		_delay_ms(2);
 	}
@@ -146,6 +140,4 @@ void Genesis_In_GetPadState(AbstractPad_t *padData) {
 	padData->back = bit_check(button_data, GENESIS_MODE);
 
 	padData->menu = ((padData->d_up && padData->start) || bit_check(button_data, GENESIS_8BITDO_HOME));
-
-	padData->pad_id = pad_id;
 }
