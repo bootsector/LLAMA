@@ -2,7 +2,6 @@
 **/.vscode/ipch/*
 *.eep
 *.elf
-*.hex
 *.lss
 *.map
 *.sym
