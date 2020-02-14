@@ -112,10 +112,10 @@ void TG16_In_GetPadState(AbstractPad_t *padData) {
 	padData->a = bit_check(button_data, TG16_II);
 	padData->b = bit_check(button_data, TG16_I);
 
-	padData->x = bit_check(button_data, TG16_IV);
-	padData->y = bit_check(button_data, TG16_III);
+	padData->lb = bit_check(button_data, TG16_IV);
+	padData->x = bit_check(button_data, TG16_III);
 
-	padData->lb = bit_check(button_data, TG16_V);
+	padData->y = bit_check(button_data, TG16_V);
 	padData->rb = bit_check(button_data, TG16_VI);
 
 	padData->start = bit_check(button_data, TG16_RUN);
