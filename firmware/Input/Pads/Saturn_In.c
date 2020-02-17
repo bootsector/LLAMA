@@ -24,7 +24,7 @@
 #include "Saturn_In.h"
 #include "Util.h"
 
-#define DELAY 4
+#define DELAY 10
 
 uint8_t Saturn_In_Init(void) {
 	// D1
@@ -45,15 +45,16 @@ uint8_t Saturn_In_Init(void) {
 
 	// S0
 	bit_set(DDRF, 1 << 1);
-	bit_set(PORTF, 1 << 1);
 
 	// S1
 	bit_set(DDRF, 1 << 5);
-	bit_set(PORTF, 1 << 5);
 
 	// D4
 	bit_clear(DDRF, 1 << 4);
 	bit_set(PORTF, 1 << 4);
+
+	// S1 and S0 start as 11
+	bit_set(PORTF, (1 << 1) | (1 << 5));
 
 	return 1;
 }
@@ -69,27 +70,20 @@ static uint16_t saturn_read(void) {
 	* On 	On 		- 	- 	- 	L
 	*/
 
-	// Reading L
-	bit_set(PORTF, 1 << 1);
-	bit_set(PORTF, 1 << 5);
-	_delay_us(DELAY);
-
-	retval |= (!bit_check(PINE, 6) << 12); // L
-
-	// Reading Z, Y, X and R
+	// Reading Up, Down, Left, Right
 	bit_clear(PORTF, 1 << 1);
-	bit_clear(PORTF, 1 << 5);
+	//bit_set(PORTF, 1 << 5);
 	_delay_us(DELAY);
 
-	retval |= (!bit_check(PINF, 0) << 0); // Z
-	retval |= (!bit_check(PINF, 6) << 1); // Y
-	retval |= (!bit_check(PINC, 7) << 2); // X
-	retval |= (!bit_check(PINE, 6) << 3); // R
-
+	retval |= (!bit_check(PINF, 0) << 8); // Up
+	retval |= (!bit_check(PINF, 6) << 9); // Down
+	retval |= (!bit_check(PINC, 7) << 10); // Left
+	retval |= (!bit_check(PINE, 6) << 11); // Right
 
 	// Reading B, C, A and Start
-	bit_set(PORTF, 1 << 1);
-	bit_clear(PORTF, 1 << 5);
+	//bit_set(PORTF, 1 << 1);
+	//bit_clear(PORTF, 1 << 5);
+	PORTF = (PORTF | (1 << 1)) & ~(1 << 5);
 	_delay_us(DELAY);
 
 	retval |= (!bit_check(PINF, 0) << 4); // B
@@ -97,16 +91,25 @@ static uint16_t saturn_read(void) {
 	retval |= (!bit_check(PINC, 7) << 6); // A
 	retval |= (!bit_check(PINE, 6) << 7); // Start
 
-
-	// Reading Up, Down, Left, Right
+	// Reading Z, Y, X and R
 	bit_clear(PORTF, 1 << 1);
-	bit_set(PORTF, 1 << 5);
+	//bit_clear(PORTF, 1 << 5);
 	_delay_us(DELAY);
 
-	retval |= (!bit_check(PINF, 0) << 8); // Up
-	retval |= (!bit_check(PINF, 6) << 9); // Down
-	retval |= (!bit_check(PINC, 7) << 10); // Left
-	retval |= (!bit_check(PINE, 6) << 11); // Right
+	retval |= (!bit_check(PINF, 0) << 0); // Z
+	retval |= (!bit_check(PINF, 6) << 1); // Y
+	retval |= (!bit_check(PINC, 7) << 2); // X
+	retval |= (!bit_check(PINE, 6) << 3); // R
+
+	// Reading L
+	//bit_set(PORTF, 1 << 1);
+	//bit_set(PORTF, 1 << 5);
+	bit_set(PORTF, (1 << 1) | (1 << 5));
+	_delay_us(DELAY);
+
+	retval |= (!bit_check(PINE, 6) << 12); // L
+
+	_delay_ms(16);
 
 	return retval;
 }
