@@ -24,7 +24,9 @@
 #include "Saturn_In.h"
 #include "Util.h"
 
-#define DELAY 10
+#define DELAY 4
+
+static uint8_t pad_detected;
 
 uint8_t Saturn_In_Init(void) {
 	// D1
@@ -56,7 +58,28 @@ uint8_t Saturn_In_Init(void) {
 	// S1 and S0 start as 11
 	bit_set(PORTF, (1 << 1) | (1 << 5));
 
+	pad_detected = 0;
+
 	return 1;
+}
+
+static void saturn_detect_pad(void) {
+	uint8_t pad_id = 0;
+
+	bit_clear(PORTF, 1 << 1);
+	
+	_delay_us(80);
+
+	bit_set(PORTF, 1 << 1);
+
+	_delay_us(2);
+
+	pad_id |= (!bit_check(PINF, 0)); 
+	pad_id |= (!bit_check(PINF, 6) << 1); 
+
+	pad_detected = (pad_id == 0);
+
+	_delay_ms(16);
 }
 
 static uint16_t saturn_read(void) {
@@ -70,10 +93,16 @@ static uint16_t saturn_read(void) {
 	* On 	On 		- 	- 	- 	L
 	*/
 
+	if(!pad_detected) {
+		saturn_detect_pad();
+
+		return 0;
+	}
+
 	// Reading Up, Down, Left, Right
 	bit_clear(PORTF, 1 << 1);
 	//bit_set(PORTF, 1 << 5);
-	_delay_us(DELAY);
+	_delay_us(5);
 
 	retval |= (!bit_check(PINF, 0) << 8); // Up
 	retval |= (!bit_check(PINF, 6) << 9); // Down
@@ -83,8 +112,9 @@ static uint16_t saturn_read(void) {
 	// Reading B, C, A and Start
 	//bit_set(PORTF, 1 << 1);
 	//bit_clear(PORTF, 1 << 5);
+	_delay_us(41);
 	PORTF = (PORTF | (1 << 1)) & ~(1 << 5);
-	_delay_us(DELAY);
+	_delay_us(1);
 
 	retval |= (!bit_check(PINF, 0) << 4); // B
 	retval |= (!bit_check(PINF, 6) << 5); // C
@@ -94,7 +124,7 @@ static uint16_t saturn_read(void) {
 	// Reading Z, Y, X and R
 	bit_clear(PORTF, 1 << 1);
 	//bit_clear(PORTF, 1 << 5);
-	_delay_us(DELAY);
+	_delay_us(1);
 
 	retval |= (!bit_check(PINF, 0) << 0); // Z
 	retval |= (!bit_check(PINF, 6) << 1); // Y
@@ -104,8 +134,9 @@ static uint16_t saturn_read(void) {
 	// Reading L
 	//bit_set(PORTF, 1 << 1);
 	//bit_set(PORTF, 1 << 5);
+	_delay_us(64);
 	bit_set(PORTF, (1 << 1) | (1 << 5));
-	_delay_us(DELAY);
+	_delay_us(90);
 
 	retval |= (!bit_check(PINE, 6) << 12); // L
 
