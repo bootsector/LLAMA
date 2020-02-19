@@ -74,8 +74,8 @@ static void saturn_detect_pad(void) {
 
 	_delay_us(2);
 
-	pad_id |= (!bit_check(PINF, 0)); 
-	pad_id |= (!bit_check(PINF, 6) << 1); 
+	pad_id |= (bit_check(PINF, 0)); 
+	pad_id |= (bit_check(PINF, 6) << 1); 
 
 	pad_detected = (pad_id == 0);
 
