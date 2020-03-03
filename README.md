@@ -40,6 +40,9 @@ dfu-programmer atmega32u4 flash --eeprom map.eep --force
 Mapping is not mandatory. The firmware will save the defaults to EEPROM by
 itself the first time it runs if no valid mapping/config is found.
 
+Each controller has two mapping profiles. Profiles can be switched by pressing
+DOWN + SELECT.
+
 **Licensing:**
 
 - Firmware and bootloader sources are licensed under [GPL-3.0](LICENSE)

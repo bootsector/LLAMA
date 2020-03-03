@@ -62,12 +62,14 @@ eeprom += read_xmltag(xmldoc, "config-version")
 systems = xmldoc.getElementsByTagName("system")
 for system in systems:
 	ident = system.getAttribute("id")
-	name = system.getAttribute("name")
-	i = 0
-	for button in BUTTONS:
-		eeprom += int(system.getElementsByTagName(
-			BUTTONS[i])[0].firstChild.data),
-		i += 1
+	name = system.getAttribute("name")	
+	profiles = system.getElementsByTagName("profile")
+	for profile in profiles:
+		i = 0
+		for button in BUTTONS:
+			eeprom += int(profile.getElementsByTagName(
+				BUTTONS[i])[0].firstChild.data),
+			i += 1
 
 # Write out the generated EEPROM file
 write_eeprom_file(eeprom)

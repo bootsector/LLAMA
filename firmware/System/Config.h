@@ -42,7 +42,7 @@ typedef struct
 {
 	LLOADConfig_Header_t header;
 
-	LLOADConfig_PadConfig_t pad_config[6];
+	LLOADConfig_PadConfig_t pad_config[2][6];
 
 } LLOADConfig_t;
 
@@ -50,7 +50,7 @@ typedef struct
 #define LLOAD_CFG_MAGIC_BYTES   0x544F4F42
 
 // Config payload version
-#define LLOAD_CFG_VERSION       0x01
+#define LLOAD_CFG_VERSION       0x02
 
 // LLOAD Abstract Pad definitions for mappings
 #define LLOAD_CFG_REF_X                   0

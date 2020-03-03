@@ -28,6 +28,8 @@ static AbstractPad_t *ip, *op;
 
 static uint8_t src_button_input, dst_button, src_button_input_data;
 
+static uint8_t map_profile, map_profile_debounce;
+
 void Mapper_Init(AbstractPad_t *in, AbstractPad_t *out) {
 	ref_in[0] = &in->x;
 	ref_in[1] = &in->a;
@@ -83,6 +85,18 @@ void Mapper_Init(AbstractPad_t *in, AbstractPad_t *out) {
 
 	ip = in;
 	op = out;
+
+	map_profile = 0;
+	map_profile_debounce = 0;
+}
+
+static inline void LLOADCycleMapProfile(void) {
+	if(map_profile_debounce) {
+		return;
+	}
+
+	map_profile = (map_profile + 1) % 2;
+	map_profile_debounce = 100;
 }
 
 static inline uint8_t LLOADReferenceIsDigital(uint8_t reference) {
@@ -182,10 +196,19 @@ void Mapper_Map(void) {
 
 	for(dst_button = LLOAD_CFG_REF_X; dst_button <= LLOAD_CFG_REF_RIGHT_ANALOG_RIGHT; dst_button++) {
 
-		src_button_input = LLOADConfig.pad_config[ip->cfg_map_pad_id].pad_map[dst_button];
+		src_button_input = LLOADConfig.pad_config[map_profile][ip->cfg_map_pad_id].pad_map[dst_button];
 
 		src_button_input_data = LLOADConvertData(src_button_input, dst_button, src_button_input == LLOAD_CFG_REF_NONE ? *ref_in[dst_button] : *ref_in[src_button_input]);
 
 		*ref_out[dst_button] = src_button_input_data;
+	}
+
+	// Down + Start cycles mapping profile for the connected pad
+	if(ip->d_down && ip->start) {
+		LLOADCycleMapProfile();
+	}
+
+	if(map_profile_debounce > 0) {
+		map_profile_debounce--;
 	}
 }
