@@ -16,6 +16,30 @@ LLOAD currently supports original controllers for the systems below:
 - Sega Saturn
 - Sega Genesis / Master System / Atari 2600 and compatibles
 
+**Button Mapping**
+
+It's possible to map buttons for each supported joystick. Button mapping is done
+based on an index that maps to the internal abstract pad (XInput-like).
+
+Look for "LLOAD Abstract Pad definitions for mappings" inside System/Config.h 
+for a list of values and which buttons they correspond to. 255 means that a
+button won't map to anything (it will be "deactivated").
+
+Diagrams will be provided later, showing the default mapping correspondence 
+between input controllers and their LLAPI and XInput outputs.
+
+Make changes inside the mapper/map.xml file and run the mapper/mapper.py 
+(tested only on Python 2.7). You should probably need to install intelhex
+package via pip beforehand.
+
+The above will convert map.xml to a file named map.eep. This should be 
+flashed into AVR's EEPROM like this:
+
+dfu-programmer atmega32u4 flash --eeprom map.eep --force
+
+Mapping is not mandatory. The firmware will save the defaults to EEPROM by
+itself the first time it runs if no valid mapping/config is found.
+
 **Licensing:**
 
 - Firmware and bootloader sources are licensed under [GPL-3.0](LICENSE)

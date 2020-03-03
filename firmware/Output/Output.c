@@ -59,8 +59,8 @@ static void Output_SetUSBData(AbstractPad_t *padData) {
 	padData->l_thumb ? bit_set(gamepad_state.digital_buttons_1, XBOX_LEFT_STICK)  : bit_clear(gamepad_state.digital_buttons_1, XBOX_LEFT_STICK);
 	padData->r_thumb ? bit_set(gamepad_state.digital_buttons_1, XBOX_RIGHT_STICK) : bit_clear(gamepad_state.digital_buttons_1, XBOX_RIGHT_STICK);
 
-	gamepad_state.lt = padData->lt * 0xFF;
-	gamepad_state.rt = padData->rt * 0xFF;
+	gamepad_state.lt = padData->lt;
+	gamepad_state.rt = padData->rt;
 }
 
 void Output_SetPadState(AbstractPad_t *padData) {

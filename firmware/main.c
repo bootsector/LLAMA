@@ -23,8 +23,10 @@
 #include "Input.h"
 #include "Output.h"
 #include "Util.h"
+#include "Config.h"
+#include "Mapper.h"
 
-AbstractPad_t PadData_DB15;
+AbstractPad_t PadData_DB15, PadData_Output;
 
 void LLOAD_PadReadCallback(void) {
 	Input_GetPadState(&PadData_DB15);
@@ -39,8 +41,12 @@ int main(void) {
 	bit_set(MCUCR, 1 << JTD);
 	bit_set(MCUCR, 1 << JTD);
 
-	// Reset Abstract Pad data buffer
+	// Load map config
+	LLOADConfig_Init();
+
+	// Reset pad data buffers
 	AbstractPad_ResetBuffer(&PadData_DB15);
+	AbstractPad_ResetBuffer(&PadData_Output);
 
 	// Initialize LLIO and USB interfaces
 	Output_Init();
@@ -51,12 +57,17 @@ int main(void) {
 	// Initialize DB15 interface
 	Input_Init();
 
+	// Initialize pad mapping engine
+	Mapper_Init(&PadData_DB15, &PadData_Output);
+
 	// Main loop
 	for (;;) {
 		if (!Output_LLEnabled()) {
 			Input_GetPadState(&PadData_DB15);
 		}
 
-		Output_SetPadState(&PadData_DB15);
+		Mapper_Map();
+
+		Output_SetPadState(&PadData_Output);
 	}
 }

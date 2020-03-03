@@ -18,13 +18,13 @@
 * along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include <string.h>
+#ifndef MAPPER_H_
+#define MAPPER_H_
 
+#include <stdint.h>
 #include "AbstractPad.h"
-#include "Config.h"
 
-void AbstractPad_ResetBuffer(AbstractPad_t *padData) {
-	memset(padData, 0, sizeof(AbstractPad_t));
-	padData->l_x = padData->l_y = padData->r_x = padData->r_y = 0x80;
-	padData->cfg_map_pad_id = LLOAD_CFG_PAD_NEOGEO;
-}
+void Mapper_Init(AbstractPad_t *in, AbstractPad_t *out);
+void Mapper_Map(void);
+
+#endif /* MAPPER_H_ */

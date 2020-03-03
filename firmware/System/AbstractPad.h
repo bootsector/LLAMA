@@ -48,10 +48,13 @@ typedef struct
 	uint8_t d_right;
 
 	// Left and right analog sticks
-	int16_t l_x;
-	int16_t l_y;
-	int16_t r_x;
-	int16_t r_y;
+	uint8_t l_x;
+	uint8_t l_y;
+	uint8_t r_x;
+	uint8_t r_y;
+
+	// Config Map Pad Id
+	uint8_t cfg_map_pad_id;
 } AbstractPad_t;
 
 void AbstractPad_ResetBuffer(AbstractPad_t *padData);

@@ -131,9 +131,9 @@ void Saturn_In_GetPadState(AbstractPad_t *padData) {
 
 	padData->rb = bit_check(button_data, SATURN_Z);
 
-	padData->lt = bit_check(button_data, SATURN_L);
+	padData->lt = bit_check(button_data, SATURN_L) ? 0xFF : 0x00;
 
-	padData->rt = bit_check(button_data, SATURN_R);
+	padData->rt = bit_check(button_data, SATURN_R) ? 0xFF : 0x00;
 
 	padData->start = bit_check(button_data, SATURN_START);
 

@@ -18,13 +18,28 @@
 * along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include <string.h>
-
-#include "AbstractPad.h"
 #include "Config.h"
+#include <avr/eeprom.h>
 
-void AbstractPad_ResetBuffer(AbstractPad_t *padData) {
-	memset(padData, 0, sizeof(AbstractPad_t));
-	padData->l_x = padData->l_y = padData->r_x = padData->r_y = 0x80;
-	padData->cfg_map_pad_id = LLOAD_CFG_PAD_NEOGEO;
+LLOADConfig_t LLOADConfig;
+
+static void LLOADConfigLoadDefaults(void) {
+	LLOADConfig.header.magic_bytes = LLOAD_CFG_MAGIC_BYTES;
+
+	LLOADConfig.header.version = LLOAD_CFG_VERSION;
+
+	for(int j = LLOAD_CFG_PAD_NEOGEO; j <= LLOAD_CFG_PAD_GENESIS; j++) {
+		for(uint8_t i = LLOAD_CFG_REF_X; i <= LLOAD_CFG_REF_RIGHT_ANALOG_RIGHT; i++) {
+			LLOADConfig.pad_config[j].pad_map[i] = i;
+		}
+	}
+}
+
+void LLOADConfig_Init(void) {
+	eeprom_read_block(&LLOADConfig, 0, sizeof(LLOADConfig));
+
+	if(LLOADConfig.header.magic_bytes != LLOAD_CFG_MAGIC_BYTES || LLOADConfig.header.version != LLOAD_CFG_VERSION) {
+		LLOADConfigLoadDefaults();
+		eeprom_write_block(&LLOADConfig, 0, sizeof(LLOADConfig));
+	}
 }

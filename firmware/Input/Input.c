@@ -24,6 +24,7 @@
 
 #include "Input.h"
 #include "Util.h"
+#include "Config.h"
 
 #include "NeoGeo_In.h"
 #include "SNES_In.h"
@@ -128,24 +129,31 @@ static void Input_ReadPad(AbstractPad_t *padData) {
 	switch (current_pad) {
 		case DB15_PAD_NEOGEO:
 			NeoGeo_In_GetPadState(padData);
+			padData->cfg_map_pad_id = LLOAD_CFG_PAD_NEOGEO;
 			break;
 		case DB15_PAD_SNES:
 			SNES_In_GetPadState(padData);
+			padData->cfg_map_pad_id = LLOAD_CFG_PAD_SNES;
 			break;
 		case DB15_PAD_NES:
 			NES_In_GetPadState(padData);
+			padData->cfg_map_pad_id = LLOAD_CFG_PAD_NES;
 			break;
 		case DB15_PAD_GENESIS:
 			Genesis_In_GetPadState(padData);
+			padData->cfg_map_pad_id = LLOAD_CFG_PAD_GENESIS;
 			break;
 		case DB15_PAD_TG16:
 			TG16_In_GetPadState(padData);
+			padData->cfg_map_pad_id = LLOAD_CFG_PAD_TG16;
 			break;
 		case DB15_PAD_SATURN:
 			Saturn_In_GetPadState(padData);
+			padData->cfg_map_pad_id = LLOAD_CFG_PAD_SATURN;
 			break;
 		default:
 			NeoGeo_In_GetPadState(padData);
+			padData->cfg_map_pad_id = LLOAD_CFG_PAD_NEOGEO;
 			break;
 	}
 }

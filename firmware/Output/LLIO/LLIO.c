@@ -81,7 +81,7 @@ void LLIO_ClearPadData(void) {
 }
 
 void LLIO_SetPadData(AbstractPad_t *padData) {
-	//TODO: SNES hardcoded. To change this based on the connected joypad!
+	// LLOAD will always present as a SNES pad unless otherwise required.
 	llio_buffer[0] = 27;
 
 	padData->x ? bit_set(llio_buffer[1], 1 << 2) : bit_clear(llio_buffer[1], 1 << 2); // Y
