@@ -18,6 +18,8 @@
 * along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
+#include <util/delay.h>
+
 #include "Mapper.h"
 #include "Config.h"
 
@@ -28,7 +30,7 @@ static AbstractPad_t *ip, *op;
 
 static uint8_t src_button_input, dst_button, src_button_input_data;
 
-static uint8_t map_profile, map_profile_debounce;
+static uint8_t map_profile;
 
 void Mapper_Init(AbstractPad_t *in, AbstractPad_t *out) {
 	ref_in[0] = &in->x;
@@ -87,16 +89,11 @@ void Mapper_Init(AbstractPad_t *in, AbstractPad_t *out) {
 	op = out;
 
 	map_profile = 0;
-	map_profile_debounce = 0;
 }
 
 static inline void LLOADCycleMapProfile(void) {
-	if(map_profile_debounce) {
-		return;
-	}
-
 	map_profile = (map_profile + 1) % 2;
-	map_profile_debounce = 200;
+	_delay_ms(250);
 }
 
 static inline uint8_t LLOADReferenceIsDigital(uint8_t reference) {
@@ -206,9 +203,5 @@ void Mapper_Map(void) {
 	// Down + Start cycles mapping profile for the connected pad
 	if(ip->d_down && ip->start) {
 		LLOADCycleMapProfile();
-	}
-
-	if(map_profile_debounce > 0) {
-		map_profile_debounce--;
 	}
 }
