@@ -42,7 +42,7 @@ typedef struct
 {
 	LLOADConfig_Header_t header;
 
-	LLOADConfig_PadConfig_t pad_config[2][6];
+	LLOADConfig_PadConfig_t pad_config[6][2];
 
 } LLOADConfig_t;
 

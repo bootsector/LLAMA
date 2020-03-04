@@ -196,7 +196,7 @@ void Mapper_Map(void) {
 
 	for(dst_button = LLOAD_CFG_REF_X; dst_button <= LLOAD_CFG_REF_RIGHT_ANALOG_RIGHT; dst_button++) {
 
-		src_button_input = LLOADConfig.pad_config[map_profile][ip->cfg_map_pad_id].pad_map[dst_button];
+		src_button_input = LLOADConfig.pad_config[ip->cfg_map_pad_id][map_profile].pad_map[dst_button];
 
 		src_button_input_data = LLOADConvertData(src_button_input, dst_button, src_button_input == LLOAD_CFG_REF_NONE ? *ref_in[dst_button] : *ref_in[src_button_input]);
 

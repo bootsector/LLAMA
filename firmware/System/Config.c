@@ -28,10 +28,11 @@ static void LLOADConfigLoadDefaults(void) {
 
 	LLOADConfig.header.version = LLOAD_CFG_VERSION;
 
-	for(int p = 0; p < 2; p++) {
-		for(int j = LLOAD_CFG_PAD_NEOGEO; j <= LLOAD_CFG_PAD_GENESIS; j++) {
+	
+	for(int j = LLOAD_CFG_PAD_NEOGEO; j <= LLOAD_CFG_PAD_GENESIS; j++) {
+		for(int p = 0; p < 2; p++) {
 			for(uint8_t i = LLOAD_CFG_REF_X; i <= LLOAD_CFG_REF_RIGHT_ANALOG_RIGHT; i++) {
-				LLOADConfig.pad_config[p][j].pad_map[i] = i;
+				LLOADConfig.pad_config[j][p].pad_map[i] = i;
 			}
 		}
 	}
