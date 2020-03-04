@@ -96,7 +96,7 @@ static inline void LLOADCycleMapProfile(void) {
 	}
 
 	map_profile = (map_profile + 1) % 2;
-	map_profile_debounce = 100;
+	map_profile_debounce = 200;
 }
 
 static inline uint8_t LLOADReferenceIsDigital(uint8_t reference) {
