@@ -19,18 +19,24 @@ LLOAD currently supports original controllers for the systems below:
 **Button Mapping**
 
 It's possible to map buttons for each supported joystick. Button mapping is done
-based on an index that maps to the internal abstract pad (XInput-like).
+based on an index that maps to buttons of the internal abstract pad 
+(XInput-like).
 
-Look for "LLOAD Abstract Pad definitions for mappings" inside System/Config.h 
-for a list of values and which buttons they correspond to. 255 means that a
-button won't map to anything (it will be "deactivated").
+Mapping is fully customized by the user. Planning your mapping can be done with
+the help of the mapper/LLOAD Mapping.xlsx spreadsheel. Change the buttons of
+the supported pads in the "Input" area by selecting them from list boxes. You
+can see how those mappings affect output for XInput (USB) and also LLAPI cores
+by checking the "Output" area of the spreadsheet.
 
-Diagrams will be provided later, showing the default mapping correspondence 
-between input controllers and their LLAPI and XInput outputs.
+After setting the mappings in the spreadsheet, simply use the numbers inside
+parenthesis for each button of each controller in the "<profile>" section of
+the mapper/map.xml file. There are two profiles per controller. You just
+apply the numbers at the same order they read from the spreadsheet to the
+chosen controller profile.
 
-Make changes inside the mapper/map.xml file and run the mapper/mapper.py 
-(tested only on Python 2.7). You should probably need to install intelhex
-package via pip beforehand.
+After finishing the changes inside mapper/map.xml file, run the 
+mapper/mapper.py application (tested only on Python 2.7). You should probably
+need to install intelhex package via pip beforehand.
 
 The above will convert map.xml to a file named map.eep. This should be 
 flashed into AVR's EEPROM like this:
