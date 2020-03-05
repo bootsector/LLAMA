@@ -64,8 +64,7 @@ int main(void) {
 	// Main loop
 	for (;;) {
 		if (!Output_LLEnabled()) {
-			Input_GetPadState(&PadData_DB15);
-			Mapper_Map();
+			LLOAD_PadReadCallback();
 		}
 
 		Output_SetPadState(&PadData_Output);
