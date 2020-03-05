@@ -30,6 +30,7 @@ AbstractPad_t PadData_DB15, PadData_Output;
 
 void LLOAD_PadReadCallback(void) {
 	Input_GetPadState(&PadData_DB15);
+	Mapper_Map();
 }
 
 int main(void) {
@@ -64,9 +65,8 @@ int main(void) {
 	for (;;) {
 		if (!Output_LLEnabled()) {
 			Input_GetPadState(&PadData_DB15);
+			Mapper_Map();
 		}
-
-		Mapper_Map();
 
 		Output_SetPadState(&PadData_Output);
 	}
