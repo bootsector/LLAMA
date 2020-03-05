@@ -35,13 +35,22 @@ apply the numbers at the same order they read from the spreadsheet to the
 chosen controller profile.
 
 After finishing the changes inside mapper/map.xml file, run the 
-mapper/mapper.py application (tested only on Python 2.7). You should probably
+mapper/mapper.py application (tested only on Python 2.7). 
+
+```
+cd mapper
+python mapper.py
+```
+
+You should probably
 need to install intelhex package via pip beforehand.
+
+```pip install intelhex```
 
 The above will convert map.xml to a file named map.eep. This should be 
 flashed into AVR's EEPROM like this:
 
-dfu-programmer atmega32u4 flash --eeprom map.eep --force
+```dfu-programmer atmega32u4 flash --eeprom map.eep --force```
 
 Mapping is not mandatory. The firmware will save the defaults to EEPROM by
 itself the first time it runs if no valid mapping/config is found.
