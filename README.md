@@ -23,13 +23,13 @@ based on an index that maps to buttons of the internal abstract pad
 (XInput-like).
 
 Mapping is fully customized by the user. Planning your mapping can be done with
-the help of the mapper/LLOAD Mapping.xlsx spreadsheel. Change the buttons of
+the help of the mapper/LLOAD Mapping.xlsx spreadsheet. Change the buttons of
 the supported pads in the "Input" area by selecting them from list boxes. You
 can see how those mappings affect output for XInput (USB) and also LLAPI cores
 by checking the "Output" area of the spreadsheet.
 
 After setting the mappings in the spreadsheet, simply use the numbers inside
-parenthesis for each button of each controller in the "<profile>" section of
+parenthesis for each button of each controller in the ```<profile>``` section of
 the mapper/map.xml file. There are two profiles per controller. You just
 apply the numbers at the same order they read from the spreadsheet to the
 chosen controller profile.
