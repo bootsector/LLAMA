@@ -80,7 +80,7 @@ void Output_SetPadState(AbstractPad_t *padData) {
 	if (llio_status) {
 		LLIO_ProcessEvent(padData);
 
-		//TODO: To remove this once LLAPI has native support for the HOME/MENU button
+		// Even though LLAPI has its own button combos for OSD, we still "listen" to OSD trigger from USB...
 		padData->menu ? bit_set(gamepad_state.digital_buttons_2, XBOX_HOME) : bit_clear(gamepad_state.digital_buttons_2, XBOX_HOME);
 	} else {
 		Output_SetUSBData(padData);
