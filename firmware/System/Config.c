@@ -36,6 +36,26 @@ static void LLOADConfigLoadDefaults(void) {
 			}
 		}
 	}
+
+	// Setting alternative profiles (1) for SNES, Genesis and Saturn pads
+	LLOADConfig.pad_config[LLOAD_CFG_PAD_SNES][1].pad_map[0] = 3;
+	LLOADConfig.pad_config[LLOAD_CFG_PAD_SNES][1].pad_map[1] = 0;
+	LLOADConfig.pad_config[LLOAD_CFG_PAD_SNES][1].pad_map[2] = 1;
+	LLOADConfig.pad_config[LLOAD_CFG_PAD_SNES][1].pad_map[3] = 2;
+
+	LLOADConfig.pad_config[LLOAD_CFG_PAD_SATURN][1].pad_map[0] = 4;
+	LLOADConfig.pad_config[LLOAD_CFG_PAD_SATURN][1].pad_map[1] = 0;
+	LLOADConfig.pad_config[LLOAD_CFG_PAD_SATURN][1].pad_map[2] = 1;
+	LLOADConfig.pad_config[LLOAD_CFG_PAD_SATURN][1].pad_map[3] = 3;
+	LLOADConfig.pad_config[LLOAD_CFG_PAD_SATURN][1].pad_map[4] = 5;
+	LLOADConfig.pad_config[LLOAD_CFG_PAD_SATURN][1].pad_map[5] = 2;
+
+	LLOADConfig.pad_config[LLOAD_CFG_PAD_GENESIS][1].pad_map[0] = 4;
+	LLOADConfig.pad_config[LLOAD_CFG_PAD_GENESIS][1].pad_map[1] = 0;
+	LLOADConfig.pad_config[LLOAD_CFG_PAD_GENESIS][1].pad_map[2] = 1;
+	LLOADConfig.pad_config[LLOAD_CFG_PAD_GENESIS][1].pad_map[3] = 3;
+	LLOADConfig.pad_config[LLOAD_CFG_PAD_GENESIS][1].pad_map[4] = 5;
+	LLOADConfig.pad_config[LLOAD_CFG_PAD_GENESIS][1].pad_map[5] = 2;
 }
 
 void LLOADConfig_Init(void) {
