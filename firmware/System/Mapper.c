@@ -28,7 +28,7 @@ static uint8_t *ref_out[25];
 
 static AbstractPad_t *ip, *op;
 
-static uint8_t src_button_input, dst_button, src_button_input_data;
+static uint8_t src_button_input, dst_button;
 
 static uint8_t map_profile;
 
@@ -195,9 +195,8 @@ void Mapper_Map(void) {
 
 		src_button_input = LLOADConfig.pad_config[ip->cfg_map_pad_id][map_profile].pad_map[dst_button];
 
-		src_button_input_data = LLOADConvertData(src_button_input, dst_button, src_button_input == LLOAD_CFG_REF_NONE ? *ref_in[dst_button] : *ref_in[src_button_input]);
+		*ref_out[dst_button] = LLOADConvertData(src_button_input, dst_button, src_button_input == LLOAD_CFG_REF_NONE ? *ref_in[dst_button] : *ref_in[src_button_input]);
 
-		*ref_out[dst_button] = src_button_input_data;
 	}
 
 	// Down + Start cycles mapping profile for the connected pad
