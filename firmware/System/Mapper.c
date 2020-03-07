@@ -188,6 +188,8 @@ static inline uint8_t LLOADConvertData(uint8_t src, uint8_t dst, uint8_t data) {
 	return data;
 }
 
+#pragma GCC push_options
+#pragma GCC optimize ("O3")
 void Mapper_Map(void) {
 	op->l_x = op->l_y = op->r_x = op->r_y = 0x80;
 
@@ -204,3 +206,4 @@ void Mapper_Map(void) {
 		LLOADCycleMapProfile();
 	}
 }
+#pragma GCC pop_options
