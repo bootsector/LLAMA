@@ -55,8 +55,15 @@ flashed into AVR's EEPROM like this:
 Mapping is not mandatory. The firmware will save the defaults to EEPROM by
 itself the first time it runs if no valid mapping/config is found.
 
-Each controller has two mapping profiles. Profiles can be switched by pressing
-DOWN + START.
+Each controller has two mapping profiles. Below you can find the button
+combination on each controller that will switch mapping profiles:
+
+NeoGeo: Down + Start + B
+NES: Down + Start + A
+SNES: Down + Start + A
+Saturn: Down + Start + C
+TG16/PCE: Down + Start + I
+Genesis: Down + Start + C
 
 **Licensing:**
 

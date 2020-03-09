@@ -201,8 +201,8 @@ void Mapper_Map(void) {
 
 	}
 
-	// Down + Start cycles mapping profile for the connected pad
-	if(ip->d_down && ip->start) {
+	// Down + Start + B (XInput) cycles mapping profile for the connected pad
+	if(ip->d_down && ip->start && ip->b) {
 		LLOADCycleMapProfile();
 	}
 }
