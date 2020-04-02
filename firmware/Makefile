@@ -1,4 +1,4 @@
-# LLOAD - Low Latency Open Adapter for MiSTer FPGA
+# LLAMA - Low Lag Amazing MiSTer Adapter
 #
 # Copyright (c) 2019
 # Bruno Freitas - bruno@brunofreitas.com - http://www.brunofreitas.com/
@@ -21,7 +21,7 @@ ARCH         = AVR8
 F_CPU        = 16000000
 F_USB        = $(F_CPU)
 OPTIMIZATION = s
-TARGET       = LLOAD
+TARGET       = LLAMA
 SRC          = main.c \
 Output/USB/Descriptors.c Output/USB/XInputPad.c Output/LLIO/LLIO_In.S \
 Output/LLIO/LLIO_Out.S Output/LLIO/LLIO.c System/AbstractPad.c \

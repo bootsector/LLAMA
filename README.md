@@ -1,4 +1,4 @@
-**LLOAD - Low Latency Open Adapter for MiSTer FPGA**
+**LLAMA - Low Lag Amazing MiSTer Adapter**
 
 This is an open-source / open-hardware controllers adapter for MiSTer FPGA.
 
@@ -7,7 +7,7 @@ Supported outputs are both USB (XInput) and MiSTer's [LLAPI](https://github.com/
 32U4 module designs include gerber files and SeeedStudio BOM file for Fusion
 PCB Assembly service.
 
-LLOAD currently supports original controllers for the systems below:
+LLAMA currently supports original controllers for the systems below:
 
 - Neo Geo / Neo Geo CD (**NOT compatible with SuperGun DB15 based controllers** )
 - Super NES
@@ -23,7 +23,7 @@ based on an index that maps to buttons of the internal abstract pad
 (XInput-like).
 
 Mapping is fully customized by the user. Planning your mapping can be done with
-the help of the mapper/LLOAD Mapping.xlsx spreadsheet. Change the buttons of
+the help of the mapper/LLAMA Mapping.xlsx spreadsheet. Change the buttons of
 the supported pads in the "Input" area by selecting them from list boxes. You
 can see how those mappings affect output for XInput (USB) and also LLAPI cores
 by checking the "Output" area of the spreadsheet.

@@ -1,5 +1,5 @@
 /*
-* LLOAD - Low Latency Open Adapter for MiSTer FPGA
+* LLAMA - Low Lag Amazing MiSTer Adapter
 *
 * Copyright (c) 2019
 * Bruno Freitas - bruno@brunofreitas.com - http://www.brunofreitas.com/
