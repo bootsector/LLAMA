@@ -19,7 +19,7 @@ LLAMA currently supports original controllers for the systems below:
 **Latency Measurements**
 | Controller | Samples | Average | Max     | Min   | Std Dev |
 | ---------- | ------- | ------- | --------| ----- | ------- |
-| LLOAD USB  | 2000    |1.6996ms |2.224ms  |1.188ms| 0.289ms
+| LLAMA USB  | 2000    |1.6996ms |2.224ms  |1.188ms| 0.289ms
 
 
 **Button Mapping**
