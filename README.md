@@ -16,6 +16,12 @@ LLAMA currently supports original controllers for the systems below:
 - Sega Saturn
 - Sega Genesis / Master System / Atari 2600 and compatibles
 
+**Latency Measurements**
+| Controller | Samples | Average | Max     | Min   | Std Dev |
+| ---------- | ------- | ------- | --------| ----- | ------- |
+| LLOAD USB  | 2000    |1.6996ms |2.224ms  |1.188ms| 0.289ms
+
+
 **Button Mapping**
 
 It's possible to map buttons for each supported joystick. Button mapping is done
