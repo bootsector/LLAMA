@@ -16,7 +16,7 @@ LLAMA currently supports original controllers for the systems below:
 - Sega Saturn
 - Sega Genesis / Master System / Atari 2600 and compatibles
 
-**Latency Measurements**
+**Latency Measurements - 1000Hz USB polling mode**
 | Controller | Samples | Average | Max     | Min   | Std Dev |
 | ---------- | ------- | ------- | --------| ----- | ------- |
 | LLAMA USB  | 2000    |1.6996ms |2.224ms  |1.188ms| 0.289ms
