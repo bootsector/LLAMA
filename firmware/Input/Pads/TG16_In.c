@@ -24,19 +24,21 @@
 #include "TG16_In.h"
 #include "Util.h"
 
+#define DELAY 20
+
 uint8_t TG16_In_Init(void) {
 	// Configure Data pins
 	bit_clear(DDRF, 1 << 6);
-	bit_set(PORTF, 1 << 6);
+	bit_clear(PORTF, 1 << 6);
 
 	bit_clear(DDRF, 1 << 1);
-	bit_set(PORTF, 1 << 1);
+	bit_clear(PORTF, 1 << 1);
 
 	bit_clear(DDRF, 1 << 4);
-	bit_set(PORTF, 1 << 4);
+	bit_clear(PORTF, 1 << 4);
 
 	bit_clear(DDRF, 1 << 5);
-	bit_set(PORTF, 1 << 5);
+	bit_clear(PORTF, 1 << 5);
 
 	// Configure Data Select and /OE pins
 	// Data Select
@@ -62,13 +64,13 @@ static uint16_t tg16_read(void) {
 	for(int i = 0; i < 2; i++) {
 		// /OE LOW
 		bit_clear(PORTC, 1 << 7);
-		_delay_us(1);
+		_delay_us(DELAY);
 
 		// If four directions are low, then it's an Avenue6 Pad
 		if(!bit_check(PINF, 6) && !bit_check(PINF, 1) && !bit_check(PINF, 4) && !bit_check(PINF, 5)) {
 			// Data Select LOW
 			bit_clear(PORTE, 1 << 6);
-			_delay_us(1);
+			_delay_us(DELAY);
 
 			retval |= (!bit_check(PINF, 6) << 8);  // III
 			retval |= (!bit_check(PINF, 1) << 9);  // IV
@@ -83,7 +85,7 @@ static uint16_t tg16_read(void) {
 
 			// Data Select LOW
 			bit_clear(PORTE, 1 << 6);
-			_delay_us(1);
+			_delay_us(DELAY);
 
 			retval |= (!bit_check(PINF, 6) << 4); // I
 			retval |= (!bit_check(PINF, 1) << 5); // II
@@ -96,6 +98,8 @@ static uint16_t tg16_read(void) {
 
 		// /OE HIGH
 		bit_set(PORTC, 1 << 7);
+
+		_delay_us(DELAY);
 	}
 
 	return retval;
