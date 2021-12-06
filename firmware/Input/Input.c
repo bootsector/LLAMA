@@ -103,6 +103,7 @@ static void Input_InitializePad(uint8_t force_init) {
 			break;
 		case DB15_PAD_SNES:
 		case DB15_PAD_NES:
+		case DB15_PAD_SUPERGUN:
 			pad_initialized = SNES_In_Init();
 			break;
 		case DB15_PAD_GENESIS:
@@ -132,6 +133,7 @@ static void Input_ReadPad(AbstractPad_t *padData) {
 			padData->cfg_map_pad_id = LLOAD_CFG_PAD_NEOGEO;
 			break;
 		case DB15_PAD_SNES:
+		case DB15_PAD_SUPERGUN:
 			SNES_In_GetPadState(padData);
 			padData->cfg_map_pad_id = LLOAD_CFG_PAD_SNES;
 			break;
