@@ -24,7 +24,7 @@
 #include "Saturn_In.h"
 #include "Util.h"
 
-#define DELAY 4
+#define DELAY 7
 
 uint8_t Saturn_In_Init(void) {
 	// D1
@@ -63,12 +63,13 @@ static uint16_t saturn_read(void) {
 
 	/*
 	* S0	S1		D0	d1	d2	d3
-	* Off 	Off 	Z 	Y 	X 	R
-	* On 	Off 	B 	C 	A 	St
-	* Off 	On 		Up 	Dn 	Lt 	Rt
 	* On 	On 		- 	- 	- 	L
+	* Off 	On 		Up 	Dn 	Lt 	Rt	
+	* On 	Off 	B 	C 	A 	St	
+	* Off 	Off 	Z 	Y 	X 	R
+	* Off 	Off
 	*/
-
+	
 	// Reading L
 	bit_set(PORTF, 1 << 1);
 	bit_set(PORTF, 1 << 5);
@@ -76,15 +77,15 @@ static uint16_t saturn_read(void) {
 
 	retval |= (!bit_check(PINE, 6) << 12); // L
 
-	// Reading Z, Y, X and R
+	// Reading Up, Down, Left, Right
 	bit_clear(PORTF, 1 << 1);
-	bit_clear(PORTF, 1 << 5);
+	bit_set(PORTF, 1 << 5);
 	_delay_us(DELAY);
 
-	retval |= (!bit_check(PINF, 0) << 0); // Z
-	retval |= (!bit_check(PINF, 6) << 1); // Y
-	retval |= (!bit_check(PINC, 7) << 2); // X
-	retval |= (!bit_check(PINE, 6) << 3); // R
+	retval |= (!bit_check(PINF, 0) << 8); // Up
+	retval |= (!bit_check(PINF, 6) << 9); // Down
+	retval |= (!bit_check(PINC, 7) << 10); // Left
+	retval |= (!bit_check(PINE, 6) << 11); // Right
 
 
 	// Reading B, C, A and Start
@@ -96,17 +97,23 @@ static uint16_t saturn_read(void) {
 	retval |= (!bit_check(PINF, 6) << 5); // C
 	retval |= (!bit_check(PINC, 7) << 6); // A
 	retval |= (!bit_check(PINE, 6) << 7); // Start
-
-
-	// Reading Up, Down, Left, Right
+	
+	// Reading Z, Y, X and R
 	bit_clear(PORTF, 1 << 1);
-	bit_set(PORTF, 1 << 5);
+	bit_clear(PORTF, 1 << 5);
 	_delay_us(DELAY);
 
-	retval |= (!bit_check(PINF, 0) << 8); // Up
-	retval |= (!bit_check(PINF, 6) << 9); // Down
-	retval |= (!bit_check(PINC, 7) << 10); // Left
-	retval |= (!bit_check(PINE, 6) << 11); // Right
+	retval |= (!bit_check(PINF, 0) << 0); // Z
+	retval |= (!bit_check(PINF, 6) << 1); // Y
+	retval |= (!bit_check(PINC, 7) << 2); // X
+	retval |= (!bit_check(PINE, 6) << 3); // R
+	
+	bit_clear(PORTF, 1 << 1);
+	bit_clear(PORTF, 1 << 5);
+	_delay_us(DELAY);
+
+
+
 
 	return retval;
 }
